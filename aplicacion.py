@@ -21,3 +21,27 @@ while opcion!=5:
         print("#salir()")
     else:
         print("error()")
+import sqlite3
+
+# Conectar a la base de datos (esto creará un archivo si no existe)
+conn = sqlite3.connect('Isla_almacen.db')
+
+# Crear un cursor
+cursor = conn.cursor()
+
+# Definir la consulta SQL para crear la tabla
+create_table_query = '''
+CREATE TABLE producto (
+    idproducto INTEGER,
+    codigo INTEGER,
+    nombre TEXT,
+    precio INTEGER
+);
+'''
+
+# Ejecutar la consulta para crear la tabla
+cursor.execute(create_table_query)
+
+# Guardar los cambios y cerrar la conexión
+conn.commit()
+conn.close()
